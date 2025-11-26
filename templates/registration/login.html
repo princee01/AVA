@@ -1,0 +1,27 @@
+<!-- prettier-ignore -->
+{% load tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% tailwind_css %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-sm bg-white p-8 rounded shadow-md">
+      <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+      <form method="POST" action="{% url 'login_college' %}">
+        {% csrf_token %} {{ form.as_p }}
+        <button class="btn btn-primary w-full mt-4" type="submit">Login</button>
+      </form>
+      <p class="text-center mt-4 text-sm">
+        Don't have an account?
+        <a href="{% url 'register_college' %}" class="text-blue-500"
+          >Register</a
+        >
+      </p>
+    </div>
+  </body>
+</html>

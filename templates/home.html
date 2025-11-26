@@ -1,0 +1,38 @@
+<!-- prettier-ignore -->
+{% load tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    {% tailwind_css %}
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full h-18 bg-white shadow-md">
+      <div
+        class="flex items-center justify-between mx-5 font-bold rounded-3xl p-5"
+      >
+        <div class="flex justify-between items-center gap-4">
+          <img
+            class="h-10 w-10 rounded-full object-cover"
+            src="{{user.college_photo.url}}"
+            alt=""
+          />
+          <div class="nav-title text-3xl font-bold">AVA</div>
+        </div>
+        <div
+          class="nav-list flex flex-row justify-between gap-5 items-center mx-10"
+        >
+          <a href="{{url}}" class="btn rounded-2xl text-red-800">Home</a>
+          <a href="#" class="btn rounded-2xl">About</a>
+
+          <a href="{% url 'login' %}">Login</a>
+          <a href="{% url 'register_college' %}">Register</a>
+        </div>
+      </div>
+    </nav>
+  </body>
+</html>
