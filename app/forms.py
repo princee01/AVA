@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 
 class CollegeRegistrationForm(UserCreationForm):
+    college_name = forms.CharField(required=True)
     college_id = forms.CharField(required=True)
     college_location = forms.CharField(required=True)
     estab_year = forms.IntegerField(required=True)
@@ -13,4 +14,4 @@ class CollegeRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2'] 
+        fields = ['username', 'password1', 'password2', 'college_name', 'college_email']
