@@ -36,7 +36,7 @@
           class="nav-list flex flex-row justify-between gap-5 items-center mx-10"
         >
           <a href="#" class="btn rounded-2xl text-red-800">Home</a>
-          <a href="#" class="btn rounded-2xl">Statistics</a>
+          <a href="{% url 'stats' %}" class="btn rounded-2xl">Statistics</a>
 
           <form action="{% url 'home' %}" method="POST">
             {% csrf_token %}
@@ -320,7 +320,7 @@
 
           <!-- Bottom Footer -->
           <div class="text-center text-gray-400 text-sm mt-10">
-            © 2025 Pirate Group of Institutions. All Rights Reserved.
+            © 2025 {{college.college_name}} All Rights Reserved.
           </div>
         </footer>
       </div>

@@ -66,6 +66,7 @@ class Student(models.Model):
 
     name = models.CharField(max_length=255)
     enroll_no = models.CharField(max_length=100, unique=True) 
+    course=models.CharField(default='B.Tech')
     dob = models.DateField()
     location = models.CharField(max_length=255)
     email_id = models.EmailField(unique=True)

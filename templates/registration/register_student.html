@@ -1,0 +1,21 @@
+<!-- prettier-ignore -->
+{% load tailwind_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% tailwind_css %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student_registration</title>
+  </head>
+  <body>
+    <h2>Register Student</h2>
+
+    <form method="POST">
+      {% csrf_token %} {{ form.as_p }}
+
+      <button type="submit">Add Student</button>
+    </form>
+  </body>
+</html>

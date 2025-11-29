@@ -35,3 +35,12 @@ class CollegeRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'password1', 'password2', 'college_name', 'college_email']
+
+
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ['name', 'enroll_no','course', 'dob', 'location', 'email_id']
+        widgets = {
+            'dob': forms.DateInput(attrs={'type': 'date'})
+        }

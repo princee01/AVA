@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import CollegeRegistrationForm
+from .forms import CollegeRegistrationForm,StudentForm
 from django.contrib.auth import login, authenticate, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
-from .models import College
+from .models import College,Student
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -98,4 +98,42 @@ def userpage(request):
         college = request.user.college
 
     return render(request, 'userpage.html', {'college': college})
+
+
+
+
+
+def register_student(request):
+    college = College.objects.get(user=request.user)  # logged-in college
+
+    if request.method == "POST":
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            student = form.save(commit=False)
+            student.college = college  # assign college automatically
+            student.save()
+            return redirect('stats')  # redirect to student list page
+
+    else:
+        form = StudentForm()
+
+    return render(request, "registration/register_student.html", {"form": form})
+
+@login_required
+def stats(request):
+    college = College.objects.get(user=request.user)
+    students = college.students.all()
+
+    return render(request, "stats.html", {"students": students})
+
+def student_docs(request, id):
+    student = Student.objects.get(id=id)
+    return render(request, "docs.html", {"student": student})
+
+
+
+
+    
+
+
 
