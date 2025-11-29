@@ -11,6 +11,26 @@ class CollegeRegistrationForm(UserCreationForm):
     estab_year = forms.IntegerField(required=True)
     college_email = forms.EmailField(required=True)
     college_photo = forms.ImageField(required=False)
+    bgimage=forms.ImageField()
+    description=forms.CharField()
+    contact1=forms.IntegerField()
+    contact2=forms.IntegerField()
+    contact3=forms.IntegerField()
+    #achievement section
+    Aimage1=forms.ImageField()
+    Atext1=forms.CharField()
+    Aimage2=forms.ImageField()
+    Atext2=forms.CharField()
+    Aimage3=forms.ImageField()
+    Atext3=forms.CharField()
+    #for advantage section
+    Advimage=forms.ImageField()
+    Advtext=forms.CharField()
+    #for awards/ranking section
+    awardtext=forms.CharField()
+    p_detail1=forms.CharField()
+    p_detail2=forms.CharField()
+
 
     class Meta:
         model = User

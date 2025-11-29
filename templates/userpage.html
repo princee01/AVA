@@ -10,9 +10,7 @@
     <title>Document</title>
   </head>
   <body>
-    <nav
-      class="fixed mt-0 m-2 justify-center top-0 w-full h-18 bg-white shadow-md"
-    >
+    <nav class="fixed mt-0 m-2 justify-center top-0 w-full h-18 shadow-md">
       <div
         class="flex items-center justify-between mx-5 font-bold rounded-3xl p-5"
       >
@@ -48,12 +46,284 @@
         </div>
       </div>
     </nav>
-    <div class="h-200 w-full bg-blue-100 mt-19">
+    <div
+      style="background-image: url('{{college.bgimage.url}}')"
+      class="h-520 w-full bg-cover pt-19"
+    >
       <div
         class="p-3 w-full flex justify-center items-center text-black font-bold text-2xl"
       >
         welcome,{{college.college_name}}
       </div>
+      <div class="top-first flex flex-row">
+        <div
+          style="background-image: url('{{college.college_photo.url}}')"
+          class="bg-cover college-div w-180 h-120 rounded-3xl p-4 m-20 mr-0 mt-7"
+        ></div>
+        <div
+          class="description h-120 w-180 mt-20 rounded-2xl p-4 font-bold overflow-hidden text-1.5xl mx-0"
+        >
+          {{college.description}}
+
+          <div
+            class="rounded-3xl p-4 pl-0 mt-8 w-80 text-blue-950 font-bold mx-0"
+          >
+            @{{college.college_name}}, is one of the best College in Delhi NCR
+            for MBA, B.Tech., BBA and BCA.
+          </div>
+        </div>
+      </div>
+      <div
+        style="background-image: url('{{college.Advimage.url}}')"
+        class="about w-170 h-150 mx-30 p-20 bg-cover"
+      >
+        <div class="about mt-40 w-160 h-170 bg-blue-950 ml-20 p-10 text-white">
+          <h1 class="text-3xl font-bold">About @{{college.college_name}}</h1>
+          <div class="about-text mt-10 text-justify">
+            1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
+            aut expedita culpa nisi praesentium mollitia commodi ea id
+            doloremque itaque laudantium eius laboriosam fuga illum officiis
+            facilis possimus, incidunt asperiores exercitationem a. Nostrum,
+            neque temporibus. Dignissimos nobis asperiores ab distinctio facilis
+            nulla, tenetur aperiam hic corrupti, repellendus nam, laudantium
+            dolorum!
+            <div class="mt-5"></div>
+            2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum
+            non, nobis omnis fugit ipsa possimus odio sapiente nostrum magnam
+            deserunt harum libero assumenda fuga est molestiae iusto, vero
+            suscipit iste.
+            <div class="mt-5"></div>
+            3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Deleniti, ad natus unde maiores aperiam aut at delectus eius dolor
+            nesciunt corporis velit cupiditate autem veritatis qui neque,
+            architecto exercitationem incidunt, illo consequatur iste mollitia.
+            Quia itaque non magnam quisquam nihil, facere quidem id eum dolorum
+            laboriosam quibusdam nobis perspiciatis. Possimus placeat facilis
+            sapiente perspiciatis quisquam voluptate nam et, iure numquam.
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex justify-around max-w-360 h-90 rounded-4xl pt-10 p-30 m-10 mt-60 flex-row"
+      >
+        <div class="acheivement1 w-60 h-100 bg-white rounded-3xl flex flex-col">
+          <img
+            class="p-3 rounded-3xl h-65"
+            src="{{college.Aimage1.url}}"
+            alt=""
+          />
+          <h1 class="font-bold p-4 text-blue-900">{{college.Atext1}}</h1>
+        </div>
+        <div class="acheivement2 w-60 h-100 bg-white rounded-3xl">
+          <img
+            class="p-3 rounded-3xl h-65"
+            src="{{college.Aimage2.url}}"
+            alt=""
+          />
+          <h1 class="font-bold p-4 text-blue-900">{{college.Atext2}}</h1>
+        </div>
+        <div class="acheivement3 w-60 h-100 bg-white rounded-3xl">
+          <img
+            class="p-3 rounded-3xl h-65"
+            src="{{college.Aimage3.url}}"
+            alt=""
+          />
+          <h1 class="font-bold p-4 text-blue-900">{{college.Atext3}}</h1>
+        </div>
+      </div>
     </div>
+    <div class="second w-full h-200 bg-white">
+      <div
+        class="advantage-section-text flex w-full justify-center text-2xl text-blue-900 mt-10 font-bold"
+      >
+        Best College for MBA and B.tech in Delhi NCR
+      </div>
+      <div
+        class="p-4 flex flex-row m-10 advantage-section-main w-360 h-150 bg-blue-950"
+      >
+        <div
+          class="text-white rounded-4xl h-120 bg-cover w-180"
+          style="background-image: url('{{college.Advimage.url}}')"
+        >
+          <img
+            class="h-13 w-13 rounded-full m-5"
+            src="{{college.college_photo.url}}"
+            alt=""
+          />
+        </div>
+        <div class="ml-10 flex flex-col mt-12">
+          <h1 class="text-white text-3xl font-bold">
+            # {{college.college_name}} Advantage
+            <hr />
+          </h1>
+          <h1 class="text-white font-bold mt-15 text-justify w-90">
+            {{college.Advtext}}
+          </h1>
+        </div>
+      </div>
+    </div>
+    <footer class="relative w-full h-90">
+      <!-- Gradient overlay to fade into footer -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"
+      ></div>
+
+      <div class="w-full bg-gray-100 py-12">
+        <div class="container mx-auto px-4">
+          <!-- Heading -->
+          <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">
+            {{ college.awardtext }}
+          </h2>
+
+          <!-- Award Details Box -->
+          <div class="bg-white shadow-lg rounded-xl p-6 max-w-3xl mx-auto">
+            <!-- First Detail -->
+            <div class="flex items-start gap-4 mb-4">
+              <span class="text-yellow-500 text-3xl">🏆</span>
+              <p class="text-gray-700 text-lg leading-relaxed">
+                {{ college.p_detail1 }}
+              </p>
+            </div>
+
+            <!-- Second Detail -->
+            <div class="flex items-start gap-4">
+              <span class="text-yellow-500 text-3xl">🎖️</span>
+              <p class="text-gray-700 text-lg leading-relaxed">
+                {{ college.p_detail2 }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer content -->
+      <div
+        class="relative z-10 text-white flex items-center justify-center h-full"
+      >
+        <footer class="relative bg-black text-white pt-16 pb-10">
+          <!-- Fade effect at top -->
+          <div
+            class="absolute -top-20 left-0 w-full h-20 bg-gradient-to-t from-black to-transparent"
+          ></div>
+
+          <div
+            class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10"
+          >
+            <!-- About Section -->
+            <div>
+              <h2 class="text-xl font-bold mb-4">
+                About {{college.college_name}}
+              </h2>
+              <p class="text-gray-300 text-sm leading-6">
+                {{college.college_name}} of Institution has evolved as one of
+                the best B.Tech, MBA, BBA, BCA, BCOM and B.Ed colleges with a
+                global reputation for high-quality education. Our mission is to
+                offer innovative opportunities to students to showcase
+                creativity and talent.
+              </p>
+
+              <p class="text-gray-300 text-sm mt-4 leading-6">
+                Plot No. 11 Knowledge Park II, Noida, Delhi NCR
+              </p>
+
+              <p class="mt-3 text-sm">
+                <span class="font-semibold">Email:</span>
+                {{college.college_email}}
+              </p>
+
+              <p class="mt-3 text-sm">
+                <span class="font-semibold">Admission Enquiry:</span><br />
+                (Toll Free) 18001033797, <br />
+                {{college.contact1}}
+              </p>
+            </div>
+
+            <!-- Community Section -->
+            <div>
+              <h2 class="text-xl font-bold mb-4">Community</h2>
+              <ul class="space-y-2 text-gray-300 text-sm">
+                <li>Privacy Policy</li>
+                <li>Disclaimer</li>
+                <li>Cancellation & Refund Policy</li>
+                <li>Terms & Conditions</li>
+                <li>Downloads</li>
+                <li>Contact Us</li>
+                <li>360° Virtual Campus Tour</li>
+                <li>Institutional Membership</li>
+                <li>Tender Notice</li>
+              </ul>
+            </div>
+
+            <!-- Facilities Section -->
+            <div>
+              <h2 class="text-xl font-bold mb-4">Facilities</h2>
+              <ul class="space-y-2 text-gray-300 text-sm">
+                <li>Online Application Form</li>
+                <li>Library</li>
+                <li>Computer Lab</li>
+                <li>Wi-Fi Campus</li>
+                <li>Hostel</li>
+                <li>Patents Published</li>
+                <li>Add-on Certifications</li>
+                <li>Pay Your Fee</li>
+                <li>NCC</li>
+              </ul>
+            </div>
+
+            <!-- Admissions Section -->
+            <div>
+              <h2 class="text-xl font-bold mb-4">Admissions</h2>
+              <ul class="space-y-2 text-gray-300 text-sm">
+                <li>Education Loan</li>
+                <li>Download Prospectus</li>
+                <li>Affiliations & Approvals</li>
+                <li>FAQ's</li>
+                <li>NAAC and Excellence Logo</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- News & Events -->
+          <div class="container mx-auto px-6 mt-12">
+            <h2 class="text-xl font-bold mb-4">News and Events</h2>
+
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-300 text-sm"
+            >
+              <div>
+                <p class="font-semibold">
+                  Ashneer Grover @ {{college.college_name}}...
+                </p>
+                <p class="text-gray-400">31 July 2025</p>
+                <a href="#" class="text-blue-400">Read More</a>
+              </div>
+
+              <div>
+                <p class="font-semibold">Pathfinder 3.0...</p>
+                <p class="text-gray-400">8 April 2025</p>
+                <a href="#" class="text-blue-400">Read More</a>
+              </div>
+
+              <div>
+                <p class="font-semibold">Welcome Mr. Ankur Warikoo...</p>
+                <p class="text-gray-400">21 August 2024</p>
+                <a href="#" class="text-blue-400">Read More</a>
+              </div>
+
+              <div>
+                <p class="font-semibold">Vote Reward...</p>
+                <p class="text-gray-400">2 May 2024</p>
+                <a href="#" class="text-blue-400">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Footer -->
+          <div class="text-center text-gray-400 text-sm mt-10">
+            © 2025 Pirate Group of Institutions. All Rights Reserved.
+          </div>
+        </footer>
+      </div>
+    </footer>
   </body>
 </html>

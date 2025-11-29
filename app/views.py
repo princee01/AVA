@@ -28,7 +28,30 @@ def register_college(request):
                 college_location=form.cleaned_data['college_location'],
                 estab_year=form.cleaned_data['estab_year'],
                 college_email=form.cleaned_data['college_email'],
-                college_photo=form.cleaned_data.get('college_photo')
+                college_photo=form.cleaned_data.get('college_photo'),
+                bgimage=form.cleaned_data.get('bgimage'),
+
+                description=form.cleaned_data.get('description'),
+                contact1=form.cleaned_data.get('contact1'),
+                contact2=form.cleaned_data.get('contact2'),
+                contact3=form.cleaned_data.get('contact3'),
+
+                # Achievement Section
+                Aimage1=form.cleaned_data.get('Aimage1'),
+                Atext1=form.cleaned_data.get('Atext1'),
+                Aimage2=form.cleaned_data.get('Aimage2'),
+                Atext2=form.cleaned_data.get('Atext2'),
+                Aimage3=form.cleaned_data.get('Aimage3'),
+                Atext3=form.cleaned_data.get('Atext3'),
+
+                # Advantage Section
+                Advimage=form.cleaned_data.get('Advimage'),
+                Advtext=form.cleaned_data.get('Advtext'),
+
+                # Awards / Ranking Section
+                awardtext=form.cleaned_data.get('awardtext'),
+                p_detail1=form.cleaned_data.get('p_detail1'),
+                p_detail2=form.cleaned_data.get('p_detail2'),
             )
 
             # Log in the newly registered college user
