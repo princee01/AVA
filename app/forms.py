@@ -44,3 +44,29 @@ class StudentForm(forms.ModelForm):
         widgets = {
             'dob': forms.DateInput(attrs={'type': 'date'})
         }
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ['doc_no','document_name', 'doc_id', 'issued_date', 'file']  # removed issued_by, issued_to
+        widgets = {
+            'issued_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+
+
+class UploadDocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ["doc_no","document_name", "doc_id", "issued_date", "file"]
+        widgets = {
+            'issued_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+class IssueDocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ["doc_no","document_name", "doc_id", "issued_date", "file"]
+        widgets = {
+            'issued_date': forms.DateInput(attrs={'type': 'date'}),
+        }

@@ -9,100 +9,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistics</title>
   </head>
-  <body class="bg-gray-100">
-    <div class="max-w-6xl mx-auto py-10">
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-800">Student Statistics</h1>
+  <body class="bg-gray-200">
+    <div class="flex flex-row justify-around">
+      <div class="first mt-7 rounded-lg shadow-md p-5 mb-6 w-1/3">
+        <h2 class="text-xl font-bold mb-3 text-gray-700">Total Students</h2>
 
-        <a
-          href="{% url 'register_student' %}"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow-md transition"
-        >
-          Register Student
-        </a>
+        {% for item in course_counts %}
+        <div class="flex justify-between py-2 border-b">
+          <span class="font-medium text-gray-800">{{ item.course }}</span>
+          <span class="text-blue-600 font-bold">{{ item.total }}</span>
+        </div>
+        {% endfor %}
       </div>
 
-      <!-- STUDENT TABLE -->
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-        <table class="min-w-full leading-normal">
-          <thead>
-            <tr>
-              <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-              >
-                S.No.
-              </th>
-              <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-              >
-                Name
-              </th>
-              <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-              >
-                Roll / Enroll No.
-              </th>
-              <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-              >
-                Course
-              </th>
-              <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-              >
-                Date of Birth
-              </th>
-              <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-              >
-                Location
-              </th>
-              <th
-                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-              >
-                Email
-              </th>
-            </tr>
-          </thead>
+      <div class="second">
+        <div class="max-w-6xl mx-auto py-10">
+          <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">Student Statistics</h1>
 
-          <tbody>
-            {% for student in students %}
-            <tr class="hover:bg-gray-50">
-              <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                {{ forloop.counter }}
-              </td>
-              <td
-                class="px-5 py-5 border-b border-gray-200 text-sm font-medium text-gray-900"
-              >
-                <a href="{% url 'student_docs' student.id %}"
-                  >{{ student.name }}</a
-                >
-              </td>
-              <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                {{ student.enroll_no }}
-              </td>
-              <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                {{ student.course }}
-              </td>
-              <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                {{ student.dob }}
-              </td>
-              <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                {{ student.location }}
-              </td>
-              <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                {{ student.email_id }}
-              </td>
-            </tr>
-            {% empty %}
-            <tr>
-              <td colspan="6" class="text-center py-6 text-gray-500">
-                No students found.
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+            <a
+              href="{% url 'register_student' %}"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg shadow-md transition"
+            >
+              Register Student
+            </a>
+          </div>
+
+          <!-- SEARCH BAR -->
+          <form method="GET" class="mb-6">
+            <input
+              type="text"
+              name="query"
+              value="{{ request.GET.query }}"
+              placeholder="Search by name/course/location..."
+              class="w-1/3 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="submit"
+              class="ml-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow-md"
+            >
+              Search
+            </button>
+          </form>
+
+          <!-- STUDENT TABLE -->
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <table class="min-w-full leading-normal">
+              <thead>
+                <tr>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    S.No.
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Name
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Roll / Enroll No.
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Course
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Date of Birth
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Location
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Email
+                  </th>
+                  <th
+                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for student in students %}
+                <tr class="hover:bg-gray-50">
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    {{ forloop.counter }}
+                  </td>
+                  <td
+                    class="px-5 py-5 border-b border-gray-200 text-sm font-medium text-gray-900"
+                  >
+                    <a href="{% url 'student_docs' student.id %}"
+                      >{{ student.name }}</a
+                    >
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    {{ student.enroll_no }}
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    {{ student.course }}
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    {{ student.dob }}
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    {{ student.location }}
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    {{ student.email_id }}
+                  </td>
+                  <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                    <form
+                      method="POST"
+                      action="{% url 'delete_student' student.id %}"
+                      onsubmit="return confirm('Are you sure you want to delete {{ student.name }}?');"
+                    >
+                      {% csrf_token %}
+                      <button
+                        type="submit"
+                        class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg"
+                      >
+                        Delete
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="6" class="text-center py-6 text-gray-500">
+                    No students found.
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </body>

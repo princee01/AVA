@@ -78,27 +78,65 @@ class Student(models.Model):
         return f"{self.name} - {self.enroll_no}"  
 
 class Document(models.Model):
+
+    STATUS_CHOICES = (
+        ("Uploaded", "Uploaded"),
+        ("Verified", "Verified"),
+        ("Pending", "Pending"),
+        ("Fake", "Fake"),
+    )
+
     student = models.ForeignKey(
         Student,
         on_delete=models.CASCADE,
         related_name="documents"
     )
+
     college = models.ForeignKey(
         College,
         on_delete=models.CASCADE,
         related_name="documents"
     )
 
+    issued_by_college = models.ForeignKey(
+        College,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="issued_documents"
+    )
+
+    doc_no = models.CharField(max_length=50)
     doc_id = models.CharField(max_length=100, unique=True)
     document_name = models.CharField(max_length=255)
-    issued_by = models.CharField(max_length=255)  
-    issued_to = models.CharField(max_length=255)      
+    issued_to = models.CharField(max_length=255)
     issued_date = models.DateField()
     file = models.FileField(upload_to='documents/')
 
-    class Meta:
-        unique_together = ('student', 'document_name')
-        # ensures no student gets two documents with same name (like 2 marksheet1)
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="Uploaded"
+    )
+
+    def save(self, *args, **kwargs):
+
+        # 1️⃣ If doc_no matches a college’s pattern → Verified
+        if College.objects.filter(college_id=self.doc_no[:4]).exists():
+            matched_college = College.objects.get(college_id=self.doc_no[:4])
+            self.issued_by_college = matched_college
+            self.status = "Verified"
+
+        # 2️⃣ If doc_no prefix not found but format looks valid → Pending verification
+        elif self.doc_no.startswith("SIET"):  
+            self.status = "Pending"
+
+        # 3️⃣ Document is fake
+        else:
+            self.status = "Fake"
+            self.issued_by_college = None
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.document_name} ({self.doc_id})"      
+        return f"{self.document_name} ({self.doc_id})"
