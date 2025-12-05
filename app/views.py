@@ -147,81 +147,73 @@ def stats(request):
     return render(request, "stats.html", {"students": students,"course_counts": course_counts,})
 
 from django.utils import timezone
-def student_docs(request, id):
+from types import SimpleNamespace
+
+
+
+@login_required
+def issue_document(request, id):
+    student = get_object_or_404(Student, id=id)
+    college = request.user.college  # logged-in college
+
+    if request.method == "POST":
+        form = IssueDocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            doc = form.save(commit=False)
+            doc.student = student
+            doc.college = college
+            doc.issued_to = student.name
+            doc.issued_by_college = college  # mark as issued by this college
+            doc.status = "Issued"            # set status when college issues
+            doc.save()
+            return redirect('view_documents', id=student.id)
+    else:
+        form = IssueDocumentForm()
+
+    return render(request, "docs.html", {"form": form, "student": student})
+
+
+
+from django.contrib import messages
+@login_required
+def upload_document(request, id):
     student = get_object_or_404(Student, id=id)
     college = College.objects.get(user=request.user)
 
-    documents = Document.objects.filter(student=student)
-
-    add_form = UploadDocumentForm()
-    issue_form = IssueDocumentForm()
-
     if request.method == "POST":
+        print("📌 POST DATA:", request.POST)          # DEBUG
+        print("📌 FILES:", request.FILES)             
+        form = UploadDocumentForm(request.POST, request.FILES)
+        print("📌 Form Errors Before Validating:", form.errors)
+        if form.is_valid():
+            doc = form.save(commit=False)
+            doc.student = student
+            doc.college = college
+            doc.issued_to = student.name
 
-        # ---------------------------
-        # CASE 1 → Upload Document
-        # ---------------------------
-        if "issue_document" not in request.POST:
-            add_form = UploadDocumentForm(request.POST, request.FILES)
-
-            if add_form.is_valid():
-                doc = add_form.save(commit=False)
-                doc.student = student
-                doc.college = college
-
-                # NEW: Store issuing college properly
+            # Issued-by manual input
+            issued_by_name = form.cleaned_data.get("issued_by")
+            if issued_by_name:
+                issuing_college = College.objects.filter(
+                    college_name__iexact=issued_by_name
+                ).first()
+                doc.issued_by_college = issuing_college
+            else:
                 doc.issued_by_college = college
-                doc.issued_by_name = college.college_name
-                doc.issued_to = student.name
-                doc.status = "Uploaded"
 
-                # DOC_NO VERIFICATION LOGIC
-                matching_doc = Document.objects.filter(doc_no=doc.doc_no).first()
-                if matching_doc:
-                    if matching_doc.issued_by_college == college:
-                        doc.status = "Verified"
-                    else:
-                        doc.status = "Fake"
-                else:
-                    doc.status = "Pending"
+            doc.save()
+            return redirect('view_documents', id=id)
 
-                doc.save()
-                return redirect("student_docs", id=student.id)
+    else:
+        form = UploadDocumentForm()
 
-        # ---------------------------
-        # CASE 2 → Issue Document
-        # ---------------------------
-        else:
-            issue_form = IssueDocumentForm(request.POST, request.FILES)
-
-            if issue_form.is_valid():
-                doc = issue_form.save(commit=False)
-                doc.student = student
-                doc.college = college
-
-                doc.issued_by_college = college
-                doc.issued_by_name = college.college_name
-                doc.issued_to = student.name
-                doc.status = "Issued"
-
-                # DOC_NO VERIFICATION LOGIC
-                matching_doc = Document.objects.filter(doc_no=doc.doc_no).first()
-                if matching_doc:
-                    if matching_doc.issued_by_college == college:
-                        doc.status = "Verified"
-                    else:
-                        doc.status = "Fake"
-                else:
-                    doc.status = "Pending"
-
-                doc.save()
-                return redirect("student_docs", id=student.id)
+    documents = Document.objects.filter(student=student).order_by("-issued_date")
 
     return render(request, "docs.html", {
         "student": student,
         "documents": documents,
-        "add_form": add_form,
-        "issue_form": issue_form,
+        "add_form": form,
+        "issue_form": IssueDocumentForm(),
     })
 
 
@@ -251,3 +243,17 @@ def verify_doc(request, doc_no):
 
     # Redirect to that student's document list
     return redirect('student_docs', id=document.student.id)
+
+@login_required
+def view_documents(request, id):
+    student = get_object_or_404(Student, id=id)
+    documents = Document.objects.filter(student=student).order_by('-issued_date')
+    add_form = UploadDocumentForm()
+    issue_form = IssueDocumentForm()
+    
+    return render(request, 'docs.html', {
+        "student": student,
+        "documents": documents,
+        "add_form": add_form,
+        "issue_form": issue_form,
+    })

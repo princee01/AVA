@@ -56,9 +56,11 @@ class DocumentForm(forms.ModelForm):
 
 
 class UploadDocumentForm(forms.ModelForm):
+    issued_by = forms.CharField(required=False)
+
     class Meta:
         model = Document
-        fields = ["doc_no","document_name", "doc_id", "issued_date", "file"]
+        fields = ["doc_no", "document_name", "doc_id", "issued_date", "file"]
         widgets = {
             'issued_date': forms.DateInput(attrs={'type': 'date'}),
         }

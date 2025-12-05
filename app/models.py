@@ -84,6 +84,7 @@ class Document(models.Model):
         ("Verified", "Verified"),
         ("Pending", "Pending"),
         ("Fake", "Fake"),
+        ("Issued", "Issued"),  # Added Issued status
     )
 
     student = models.ForeignKey(
@@ -107,7 +108,7 @@ class Document(models.Model):
     )
 
     doc_no = models.CharField(max_length=50)
-    doc_id = models.CharField(max_length=100, unique=True)
+    doc_id = models.CharField(max_length=100)
     document_name = models.CharField(max_length=255)
     issued_to = models.CharField(max_length=255)
     issued_date = models.DateField()
@@ -120,23 +121,38 @@ class Document(models.Model):
     )
 
     def save(self, *args, **kwargs):
+    # Clean doc_no
+        self.doc_no = self.doc_no.strip().upper()
+        prefix = self.doc_no[:4]
 
-        # 1️⃣ If doc_no matches a college’s pattern → Verified
-        if College.objects.filter(college_id=self.doc_no[:4]).exists():
-            matched_college = College.objects.get(college_id=self.doc_no[:4])
-            self.issued_by_college = matched_college
+    # Only override status if it's not manually set to something meaningful
+        if self.status in ["Uploaded", None, ""]:
+        
+        # Manually typed issuing college (coming from view)
+           issuing_college = self.issued_by_college
+
+        # Check if student exists
+           student_exists = Student.objects.filter(id=self.student_id).exists()
+
+        # Check existing document by doc_no (NOT doc_id)
+           existing_doc = Document.objects.filter(doc_no=self.doc_no).exclude(id=self.id).first()
+
+        # Case 1: doc_no already exists → Verified
+           if existing_doc and student_exists:
             self.status = "Verified"
+            self.issued_by_college = existing_doc.issued_by_college
 
-        # 2️⃣ If doc_no prefix not found but format looks valid → Pending verification
-        elif self.doc_no.startswith("SIET"):  
+        # Case 2: issued_by exists but doc_no does not match → Pending
+           elif issuing_college and student_exists:
             self.status = "Pending"
 
-        # 3️⃣ Document is fake
-        else:
+        # Case 3: issued_by college does NOT exist → Fake
+           else:
             self.status = "Fake"
             self.issued_by_college = None
 
         super().save(*args, **kwargs)
+
 
     def __str__(self):
         return f"{self.document_name} ({self.doc_id})"

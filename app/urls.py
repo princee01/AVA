@@ -11,7 +11,9 @@ urlpatterns = [
     path('user-page/',views.userpage,name="userpage"),
     path('stats/',views.stats,name="stats"),
     path('students/register/', views.register_student, name='register_student'),
-    path('students/<int:id>/docs/', views.student_docs, name='student_docs'),
+    path('students/<int:id>/docs/issue/', views.issue_document, name='issue_document'),
+    path('students/<int:id>/docs/upload/', views.upload_document, name='upload_document'),
+    path('students/<int:id>/docs/', views.view_documents, name='view_documents'),
     path('students/<int:id>/delete/', views.delete_student, name='delete_student'),
 
 ]
