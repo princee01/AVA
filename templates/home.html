@@ -11,7 +11,7 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="fixed top-0 w-full h-18 bg-white shadow-md">
+    <nav class="fixed top-0 w-full h-18 bg-black text-gray-300 shadow-md z-50">
       <div
         class="flex items-center justify-between mx-5 font-bold rounded-3xl p-5"
       >
@@ -23,16 +23,461 @@
           />
           <div class="nav-title text-3xl font-bold">AVA</div>
         </div>
+        <div class="middle gap-5">
+          <button id="menuBtn" class="px-4 py-2 rounded hover:text-white">
+            What We Do <span class="text-sm">▼</span>
+          </button>
+          <button id="whoweare" class="px-4 py-2 rounded hover:text-white">
+            Who we are <span class="text-sm">▼</span>
+          </button>
+          <button id="contactBtn" style="padding:5px 10px;">Contact Us</button>
+        </div>
         <div
           class="nav-list flex flex-row justify-between gap-5 items-center mx-10"
         >
           <a href="{{url}}" class="btn rounded-2xl text-red-800">Home</a>
-          <a href="#" class="btn rounded-2xl">About</a>
 
           <a href="{% url 'login' %}">Login</a>
           <a href="{% url 'register_college' %}">Register</a>
         </div>
       </div>
     </nav>
+    <div
+      id="slidePanel"
+      class="fixed top-0 left-0 w-full h-full bg-gray-900/90 backdrop-blur-xl transform -translate-y-full transition-all duration-500 z-40 overflow-y-auto"
+    >
+      <div class="max-w-5xl mx-auto mt-20 text-gray-200">
+        <!-- Title -->
+        <h1 class="text-4xl font-bold mb-5">
+          What Authenticity Validator Academia (AVA) Does
+        </h1>
+
+        <!-- Tagline -->
+        <p class="text-lg mb-8 text-gray-300 leading-relaxed">
+          AVA is a secure academic verification platform designed to eliminate
+          fake documents, simplify admission processes, and ensure trust between
+          colleges and students. Our system bridges institutions to verify
+          academic records instantly and transparently.
+        </p>
+
+        <!-- Section: Features -->
+        <div class="space-y-5">
+          <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700">
+            <h2 class="text-2xl font-semibold mb-2">
+              1. Instant Document Verification
+            </h2>
+            <p class="text-gray-300">
+              Colleges can upload and validate marksheets and certificates in
+              seconds through secure matching using document numbers and
+              issuance history.
+            </p>
+          </div>
+
+          <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700">
+            <h2 class="text-2xl font-semibold mb-2">
+              2. Secure Inter-College Record Sharing
+            </h2>
+            <p class="text-gray-300">
+              Institutions can verify documents issued by other colleges,
+              ensuring authenticity during admissions, transfers, and
+              postgraduate applications.
+            </p>
+          </div>
+
+          <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700">
+            <h2 class="text-2xl font-semibold mb-2">
+              3. Student Profile & Document Vault
+            </h2>
+            <p class="text-gray-300">
+              Each student has a centralized academic vault where all issued
+              documents are stored digitally for future use.
+            </p>
+          </div>
+
+          <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700">
+            <h2 class="text-2xl font-semibold mb-2">
+              4. Fraud Prevention & Transparency
+            </h2>
+            <p class="text-gray-300">
+              AVA prevents misuse of forged documents by tracking the issuing
+              college, issue date, and verifying against original records.
+            </p>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="mt-10 flex flex-row gap-4">
+          <a
+            href="/"
+            class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold"
+          >
+            Learn More
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-white font-semibold"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      id="whoWeArePanel"
+      class="fixed top-0 left-0 w-full h-full bg-gray-900/90 backdrop-blur-xl transform -translate-y-full transition-all duration-500 z-40 overflow-y-auto"
+    >
+      <div class="max-w-5xl mx-auto text-gray-200 mt-20">
+        <!-- Title -->
+        <h1 class="text-4xl font-bold mb-5">Who We Are</h1>
+
+        <!-- Tagline -->
+        <p class="text-lg mb-8 text-gray-300 leading-relaxed">
+          Authenticity Validator Academia (AVA) is a collaborative academic
+          trust framework built to strengthen transparency in the education
+          ecosystem. We empower colleges, universities, and students with
+          secure, verifiable, and tamper-proof academic document management.
+        </p>
+
+        <!-- Section: Mission -->
+        <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700 mb-5">
+          <h2 class="text-2xl font-semibold mb-2">1. Our Mission</h2>
+          <p class="text-gray-300">
+            To establish a unified academic verification network that eliminates
+            fraud, automates document validation, and ensures trust between
+            institutions and students.
+          </p>
+        </div>
+
+        <!-- Section: Vision -->
+        <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700 mb-5">
+          <h2 class="text-2xl font-semibold mb-2">2. Our Vision</h2>
+          <p class="text-gray-300">
+            A future where every academic record is secure, instantly
+            verifiable, and universally accepted — enabling seamless admissions,
+            career growth, and global mobility for students.
+          </p>
+        </div>
+
+        <!-- Section: Core Values -->
+        <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700 mb-5">
+          <h2 class="text-2xl font-semibold mb-2">3. Our Core Values</h2>
+          <ul class="text-gray-300 list-disc ml-5 space-y-1">
+            <li>Integrity and Transparency</li>
+            <li>Student-Centric Approach</li>
+            <li>Innovation in Verification Technology</li>
+            <li>Security and Data Privacy</li>
+            <li>Collaboration with Educational Institutions</li>
+          </ul>
+        </div>
+
+        <!-- Section: Who We Serve -->
+        <div class="bg-gray-800/60 p-6 rounded-xl border border-gray-700 mb-5">
+          <h2 class="text-2xl font-semibold mb-2">4. Who We Serve</h2>
+          <p class="text-gray-300">AVA is built for:</p>
+          <ul class="text-gray-300 list-disc ml-5 space-y-1">
+            <li>Students needing secure, sharable digital records</li>
+            <li>Colleges issuing verified academic documents</li>
+            <li>Universities validating incoming student records</li>
+            <li>Organizations conducting academic background checks</li>
+          </ul>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="mt-10 flex flex-row gap-4">
+          <a
+            href="/"
+            class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold"
+          >
+            Learn More About Us
+          </a>
+
+          <a
+            href="#"
+            class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-white font-semibold"
+          >
+            Contact Team AVA
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="contactModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; 
+    background:rgba(0,0,0,0.5); justify-content:center; align-items:center;">
+  <div style="background:white; padding:20px; border-radius:10px; width:300px; text-align:center; position:relative;">
+    <span id="closeBtn" style="position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold;">&times;</span>
+    <h2>Contact Us</h2>
+    <p><strong>Phone:</strong> +91 1234567890</p>
+    <p><strong>Email:</strong> info@example.com</p>
+    <p><strong>Address:</strong> 123, Example Street, City</p>
+  </div>
+</div>
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
+      <video autoplay muted loop class="w-full h-full object-cover">
+        <source src="/media/bg_video.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <button
+      class="mt-180 mb-0 bg-blue-900 text-white p-2 rounded-3xl ml-50 w-40 text-2xl font-light"
+    >
+      Lear more
+    </button>
+    <div class="overflow-hidden second w-full h-400 bg-white/60">
+      <section class="w-full bg-gray-900 text-gray-200 py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Heading -->
+    <h1 class="text-4xl font-bold mb-6 text-center">How AVA Works</h1>
+    <p class="text-gray-400 text-lg text-center max-w-3xl mx-auto mb-14">
+      Authenticity Validator Academia (AVA) is designed to help colleges, universities, 
+      and students manage and verify academic documents securely and instantly.  
+      Follow the steps below to understand how the verification ecosystem works.
+    </p>
+
+    <!-- Steps Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- Step 1 -->
+      <div class="bg-gray-800/60 p-8 rounded-xl border border-gray-700">
+        <span class="text-3xl font-bold text-blue-500">01</span>
+        <h2 class="text-2xl font-semibold mt-2 mb-3">College Registers on AVA</h2>
+        <p class="text-gray-300">
+          Colleges create official accounts on AVA, verified by the AVA team.  
+          This ensures only legitimate institutions issue and validate documents.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bg-gray-800/60 p-8 rounded-xl border border-gray-700">
+        <span class="text-3xl font-bold text-blue-500">02</span>
+        <h2 class="text-2xl font-semibold mt-2 mb-3">Student Profile Creation</h2>
+        <p class="text-gray-300">
+          Colleges add students to the AVA system. A secure digital vault is created
+          for each student where all verified documents will be stored.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="bg-gray-800/60 p-8 rounded-xl border border-gray-700">
+        <span class="text-3xl font-bold text-blue-500">03</span>
+        <h2 class="text-2xl font-semibold mt-2 mb-3">Document Issuance</h2>
+        <p class="text-gray-300">
+          Colleges upload marksheets, certificates, and academic records.  
+          Each document receives a unique **Document Number (Doc_No)** and **Issued By** tag.
+        </p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="bg-gray-800/60 p-8 rounded-xl border border-gray-700">
+        <span class="text-3xl font-bold text-blue-500">04</span>
+        <h2 class="text-2xl font-semibold mt-2 mb-3">Document Validation</h2>
+        <p class="text-gray-300">
+          When any other college receives this document during admission or verification,  
+          they simply **upload it to AVA** → AVA checks the Doc_No with the original database  
+          → Status instantly becomes **Verified** if it matches.
+        </p>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="bg-gray-800/60 p-8 rounded-xl border border-gray-700">
+        <span class="text-3xl font-bold text-blue-500">05</span>
+        <h2 class="text-2xl font-semibold mt-2 mb-3">Fraud Detection</h2>
+        <p class="text-gray-300">
+          If the uploaded document’s details don’t match the issued record,  
+          AVA automatically flags it as **Fake/Altered**, preventing fraud.
+        </p>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="bg-gray-800/60 p-8 rounded-xl border border-gray-700">
+        <span class="text-3xl font-bold text-blue-500">06</span>
+        <h2 class="text-2xl font-semibold mt-2 mb-3">Student Document Vault</h2>
+        <p class="text-gray-300">
+          Students can log in anytime to access all issued documents in one secure vault,  
+          making admissions, job applications, and verification seamless.
+        </p>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="bg-gray-800/60 p-8 rounded-xl border border-gray-700 md:col-span-2">
+        <span class="text-3xl font-bold text-blue-500">07</span>
+        <h2 class="text-2xl font-semibold mt-2 mb-3">Inter-College Sharing & Verification</h2>
+        <p class="text-gray-300">
+          Colleges can instantly verify documents issued by any other college registered on AVA.  
+          This creates a unified academic trust network across India.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-14">
+      <a 
+        href="#"
+        class="px-10 py-4 bg-blue-600 hover:bg-blue-700 rounded-xl text-white font-semibold text-lg shadow-md transition"
+      >
+        Start Using AVA →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+    </div>
+    <div class="w-full bg-gray-900 text-gray-200 py-20 px-6">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+        <!-- LEFT DIV -->
+        <div class="space-y-5">
+          <h1 class="text-4xl font-bold tracking-wide">CAREERS at AVA</h1>
+          <h2 class="text-2xl font-semibold text-blue-400">
+            Build Trust in Academia
+          </h2>
+
+          <p class="text-gray-300 leading-relaxed">
+            At Authenticity Validator Academia (AVA), we are on a mission to
+            build a transparent, fraud-free academic ecosystem. Our team works
+            on secure verification systems, digital document vaults,
+            inter-college authentication networks, and modern tools that empower
+            institutions and students across the country.
+          </p>
+
+          <a
+            href="{% url "register_college" %}"
+            class="inline-block mt-5 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg"
+          >
+            Come Join Us
+          </a>
+        </div>
+
+        <!-- RIGHT DIV -->
+        <div
+          class="space-y-5 bg-gray-800/50 p-6 rounded-2xl border border-gray-700"
+        >
+          <h2 class="text-3xl font-semibold text-blue-300">
+            Why Work With AVA?
+          </h2>
+
+          <p class="text-gray-300 leading-relaxed">
+            AVA is shaping the future of academic verification, ensuring every
+            student and institution has access to trusted, authenticated
+            academic records. By joining us, you contribute to building secure
+            digital frameworks, reducing document fraud, and transforming how
+            colleges interact with each other.
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            Be part of a team that values innovation, security, collaboration,
+            and the vision of a unified academic verification network.
+          </p>
+
+          <a
+            href="#"
+            class="inline-block mt-4 px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 text-white font-semibold"
+          >
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+    <footer class="w-full bg-black text-gray-300 py-12 px-6 border-t border-gray-800">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+
+    <!-- Logo + About -->
+    <div class="space-y-4">
+      <div class="flex items-center gap-3">
+        <img src="{% static 'nav_logo.png' %}" class="h-12 w-12 rounded-full" />
+        <h1 class="text-2xl font-bold text-white">AVA</h1>
+      </div>
+      <p class="text-gray-400">
+        Authenticity Validator Academia is a secure academic verification
+        platform ensuring trust, transparency, and fraud-free document
+        authentication across institutions.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-white">Quick Links</h2>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-blue-400 transition">What We Do</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition">Who We Are</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition">Careers</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Services -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-white">Our Services</h2>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:text-blue-400 transition">Document Verification</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition">Inter-College Validation</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition">Student Academic Vault</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition">Fraud Detection</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-white">Contact Us</h2>
+      <ul class="space-y-2">
+        <li class="flex gap-2"><span>📧</span> support@ava.in</li>
+        <li class="flex gap-2"><span>📍</span> Lucknow, India</li>
+        <li class="flex gap-2"><span>📞</span> +91 98765 43210</li>
+      </ul>
+
+      <div class="flex gap-4 mt-4 text-gray-400">
+        <a href="#" class="hover:text-blue-400 text-xl transition">🌐</a>
+        <a href="#" class="hover:text-blue-400 text-xl transition">📘</a>
+        <a href="#" class="hover:text-blue-400 text-xl transition">🐦</a>
+        <a href="#" class="hover:text-blue-400 text-xl transition">📸</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="mt-12 border-t border-gray-800 pt-5 text-center text-gray-500 text-sm">
+    © 2025 Authenticity Validator Academia (AVA). All Rights Reserved.
+  </div>
+
+</footer>
+
+
+    <script>
+      const panel = document.getElementById("slidePanel");
+      const btn = document.getElementById("menuBtn");
+
+      btn.addEventListener("click", () => {
+        panel.classList.toggle("-translate-y-full");
+      });
+
+      const panel2 = document.getElementById("whoWeArePanel");
+      const btn2 = document.getElementById("whoweare");
+
+      btn2.addEventListener("click", () => {
+        panel2.classList.toggle("-translate-y-full");
+      });
+
+      const contactBtn = document.getElementById('contactBtn');
+  const contactModal = document.getElementById('contactModal');
+  const closeBtn = document.getElementById('closeBtn');
+
+  contactBtn.addEventListener('click', () => {
+    contactModal.style.display = 'flex';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    contactModal.style.display = 'none';
+  });
+
+  // Close modal on outside click
+  window.addEventListener('click', (e) => {
+    if (e.target == contactModal) {
+      contactModal.style.display = 'none';
+    }
+  });
+    </script>
   </body>
 </html>
